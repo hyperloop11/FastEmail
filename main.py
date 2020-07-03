@@ -42,7 +42,10 @@ for idx in range(len(all_emails)):
     msg.attach(p)
 
     text = msg.as_string()
-    smtpobj.sendmail(fromadd , toadd , text)
-    sum+=1
-    print("SENT EMAIL "+str(sum))
+    try:
+        smtpobj.sendmail(fromadd , toadd , text)
+        sum+=1
+        print("SENT EMAIL "+str(sum))
+    except Exception as e:
+        print('Email to {} could not be sent because {}'.format(toadd, str(e)))
 smtpobj.quit()
